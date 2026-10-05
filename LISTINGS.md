@@ -18,7 +18,7 @@ gh repo create kiskecske24/hiring-signals-mcp --public --source . --push
 ## 1. Claude plugin directory
 
 - Where: https://claude.ai/directory/manage > Submit new > Plugin bundle
-- Repo: `kiskecske24/hiring-signals-mcp`, branch `master`, plugin path `/` (repo root)
+- Repo: `kiskecske24/hiring-signals-mcp`, branch `master`, plugin path `plugin`
 - Name: Hiring Signals
 - Short description: Live job openings from company career sites on Workday, Greenhouse, Lever, Ashby, Workable, Recruitee and Personio.
 - Category: Sales / Research (whichever is closest)
@@ -26,7 +26,7 @@ gh repo create kiskecske24/hiring-signals-mcp --public --source . --push
 
 ## 2. Official MCP Registry
 
-- Double-click `PUBLISH_REGISTRY.cmd` (downloads the official `mcp-publisher` v1.8.1 from GitHub, logs in with GitHub, publishes `server.json`).
+- Double-click `registry/PUBLISH_REGISTRY.cmd` (downloads the official `mcp-publisher` v1.8.1 from GitHub, logs in with GitHub, publishes `server.json`).
 - Name: `io.github.kiskecske24/hiring-signals` (the GitHub login proves the namespace).
 - Glama and some other directories import new registry entries automatically.
 

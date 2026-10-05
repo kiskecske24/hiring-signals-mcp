@@ -44,13 +44,7 @@ The same server works in Claude Desktop, Cursor, VS Code and other MCP clients:
 - You pay Apify only for jobs saved, plus a tiny per-run start fee; there is no subscription for this plugin.
 - Set a monthly usage limit in [Apify Console > Billing](https://console.apify.com/billing) if you want a hard cap.
 
-## Repository layout
-
-- `plugin/`: the Claude plugin (submit this folder to the Claude plugin directory).
-- `.claude-plugin/marketplace.json`: lets Claude Code install the plugin straight from this repo.
-- `server.json`, `glama.json`: MCP Registry and Glama metadata. `LISTINGS.md`: directory submission notes.
-
-## What's included in the plugin
+## What's included
 
 - `.mcp.json`: the Apify MCP server limited to the two Actors above (plus Apify's run and dataset helper tools).
 - `skills/company-job-openings`: tells Claude which Actor fits which career site, how to keep runs small, and how to summarise results.

@@ -10,5 +10,17 @@
   "homepage": "https://github.com/kiskecske24/hiring-signals-mcp",
   "repository": "https://github.com/kiskecske24/hiring-signals-mcp",
   "license": "MIT",
-  "keywords": ["jobs", "hiring", "recruiting", "sales-intelligence", "workday", "greenhouse", "lever", "ashby", "apify", "mcp"]
+  "keywords": [
+    "jobs",
+    "hiring",
+    "recruiting",
+    "sales-intelligence",
+    "workday",
+    "greenhouse",
+    "lever",
+    "ashby",
+    "apify",
+    "mcp"
+  ],
+  "privacyPolicyUrl": "https://github.com/kiskecske24/hiring-signals-mcp/blob/master/PRIVACY.md"
 }

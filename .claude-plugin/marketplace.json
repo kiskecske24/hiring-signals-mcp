@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "hiring-signals",
-      "source": "./",
+      "source": "./plugin",
       "description": "Live job openings from Workday, Greenhouse, Lever, Ashby, Workable, Recruitee and Personio career sites via Apify."
     }
   ]
