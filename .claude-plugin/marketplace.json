@@ -1,0 +1,16 @@
+{
+  "name": "hiring-signals",
+  "owner": {
+    "name": "Bence Kadi"
+  },
+  "metadata": {
+    "description": "Hiring Signals plugin: live company job openings for Claude via Apify."
+  },
+  "plugins": [
+    {
+      "name": "hiring-signals",
+      "source": "./",
+      "description": "Live job openings from Workday, Greenhouse, Lever, Ashby, Workable, Recruitee and Personio career sites via Apify."
+    }
+  ]
+}

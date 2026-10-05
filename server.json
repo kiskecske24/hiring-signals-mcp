@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kiskecske24/hiring-signals",
+  "title": "Hiring Signals",
+  "description": "Live job openings from Workday, Greenhouse, Lever, Ashby, Workable and Personio career sites.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp",
+  "repository": {
+    "url": "https://github.com/kiskecske24/hiring-signals-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/workday-jobs-scraper,Kadi_Bence/ats-jobs-scraper",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: 'Bearer <Apify API token>'. Leave empty to sign in to Apify with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

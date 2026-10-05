@@ -1,0 +1,14 @@
+{
+  "name": "hiring-signals",
+  "displayName": "Hiring Signals",
+  "version": "1.0.0",
+  "description": "See which companies are hiring, for what roles and where. Pulls live job openings from company career sites on Workday, Greenhouse, Lever, Ashby, Workable, Recruitee and Personio through two Apify Actors, with salary, location, remote status and posted date.",
+  "author": {
+    "name": "Bence Kadi",
+    "url": "https://apify.com/kadi_bence"
+  },
+  "homepage": "https://github.com/kiskecske24/hiring-signals-mcp",
+  "repository": "https://github.com/kiskecske24/hiring-signals-mcp",
+  "license": "MIT",
+  "keywords": ["jobs", "hiring", "recruiting", "sales-intelligence", "workday", "greenhouse", "lever", "ashby", "apify", "mcp"]
+}
