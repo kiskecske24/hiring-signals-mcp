@@ -18,7 +18,7 @@ gh repo create kiskecske24/hiring-signals-mcp --public --source . --push
 ## 1. Claude plugin directory
 
 - Where: https://claude.ai/directory/manage > Submit new > Plugin bundle
-- Repo: `kiskecske24/hiring-signals-mcp`, branch `main`, plugin path `/` (repo root)
+- Repo: `kiskecske24/hiring-signals-mcp`, branch `master`, plugin path `/` (repo root)
 - Name: Hiring Signals
 - Short description: Live job openings from company career sites on Workday, Greenhouse, Lever, Ashby, Workable, Recruitee and Personio.
 - Category: Sales / Research (whichever is closest)
