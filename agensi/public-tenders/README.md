@@ -16,6 +16,9 @@ Example prompts:
    - Claude Code: `claude mcp add --transport http public-tenders "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 
+## Also listed
+Official MCP Registry: `io.github.kiskecske24/public-tenders` (also Smithery and Glama).
+
 ## Costs
 The tool runs on your Apify account and bills per saved notice (fractions of a cent; default 20 notices per search, so a typical question costs well under one cent). Apify's free plan includes monthly credit.
 

@@ -16,6 +16,9 @@ Example prompts:
    - Claude Code: `claude mcp add --transport http company-research "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 
+## Also listed
+Official MCP Registry: `io.github.kiskecske24/company-research` (also Smithery and Glama).
+
 ## Costs
 The tools run on your Apify account and bill per website analysed or per screenshot (fractions of a cent each; failed sites are not charged), so checking one company costs well under one cent. Apify's free plan includes monthly credit.
 

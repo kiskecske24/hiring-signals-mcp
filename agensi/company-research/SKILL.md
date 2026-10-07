@@ -12,6 +12,7 @@ The `company-research` MCP server gives you two tools. Both work on any public w
 If you cannot see the `tech-stack-detector` / `website-screenshot` tools, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes and needs a free Apify account, apify.com):
 
 - Server URL: `https://mcp.apify.com/?tools=Kadi_Bence/tech-stack-detector,Kadi_Bence/website-screenshot`
+- Listed in the official MCP Registry as `io.github.kiskecske24/company-research` (also on Smithery/Glama), so registry-aware clients can install it by name.
 - Transport: Streamable HTTP. Auth: OAuth (the agent opens an Apify login) or header `Authorization: Bearer <Apify API token>`.
 - Claude Code: `claude mcp add --transport http company-research "<server URL>"`, then `/mcp` > company-research > Authenticate.
 - Cursor / VS Code / other clients: add an HTTP MCP server named `company-research` with the URL above.

@@ -16,6 +16,9 @@ Example prompts:
    - Claude Code: `claude mcp add --transport http hiring-signals "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 
+## Also listed
+Official MCP Registry: `io.github.kiskecske24/hiring-signals` (also Smithery and Glama).
+
 ## Costs
 The scrapers run on your Apify account and bill per saved job (fractions of a cent; default 20 jobs per company, so a typical question costs well under one cent). Apify's free plan includes monthly credit.
 

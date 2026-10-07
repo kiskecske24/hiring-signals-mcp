@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kiskecske24/public-tenders",
+  "title": "Public Tenders (EU TED)",
+  "description": "Search open EU public tenders and contract awards on TED by keyword, CPV, country and deadline.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp/tree/master/agensi/public-tenders",
+  "repository": {
+    "url": "https://github.com/kiskecske24/hiring-signals-mcp",
+    "source": "github",
+    "subfolder": "servers/public-tenders"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: 'Bearer <Apify API token>'. Leave empty to sign in to Apify with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

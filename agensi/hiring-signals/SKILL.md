@@ -12,6 +12,7 @@ The `hiring-signals` MCP server gives you two tools. Both read the public job fe
 If you cannot see the `workday-jobs-scraper` / `ats-jobs-scraper` tools, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes and needs a free Apify account, apify.com):
 
 - Server URL: `https://mcp.apify.com/?tools=Kadi_Bence/workday-jobs-scraper,Kadi_Bence/ats-jobs-scraper`
+- Listed in the official MCP Registry as `io.github.kiskecske24/hiring-signals` (also on Smithery/Glama), so registry-aware clients can install it by name.
 - Transport: Streamable HTTP. Auth: OAuth (the agent opens an Apify login) or header `Authorization: Bearer <Apify API token>`.
 - Claude Code: `claude mcp add --transport http hiring-signals "<server URL>"`, then `/mcp` > hiring-signals > Authenticate.
 - Cursor / VS Code / other clients: add an HTTP MCP server named `hiring-signals` with the URL above.

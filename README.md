@@ -54,7 +54,7 @@ The same setup (Streamable HTTP, OAuth or `Authorization: Bearer <Apify API toke
 | public-tenders | `https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper` | EU public tenders and contract awards from TED by keyword, CPV, country and deadline |
 | job-market-data | `https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed` | Job vacancies by keyword and place: Germany (Arbeitsagentur), Sweden (Platsbanken), global tech jobs (Greenhouse, Lever, Ashby and more) |
 
-Claude Code: `claude mcp add --transport http <server> "<URL>"`, then `/mcp` > Authenticate. `server.json` describes only the Hiring Signals server (the MCP Registry format is one server per file).
+Claude Code: `claude mcp add --transport http <server> "<URL>"`, then `/mcp` > Authenticate. Each server is in the official MCP Registry: `io.github.kiskecske24/hiring-signals` (root `server.json`) and `io.github.kiskecske24/<server>` (`servers/<server>/server.json`).
 
 ## Repository layout
 

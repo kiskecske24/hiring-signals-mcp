@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kiskecske24/job-market-data",
+  "title": "Job Market Data",
+  "description": "Live job vacancies: Germany (Arbeitsagentur), Sweden (Platsbanken) and global tech ATS jobs.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp/tree/master/agensi/job-market-data",
+  "repository": {
+    "url": "https://github.com/kiskecske24/hiring-signals-mcp",
+    "source": "github",
+    "subfolder": "servers/job-market-data"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: 'Bearer <Apify API token>'. Leave empty to sign in to Apify with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
