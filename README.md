@@ -44,6 +44,18 @@ The same server works in Claude Desktop, Cursor, VS Code and other MCP clients:
 - You pay Apify only for jobs saved, plus a tiny per-run start fee; there is no subscription for this plugin.
 - Set a monthly usage limit in [Apify Console > Billing](https://console.apify.com/billing) if you want a hard cap.
 
+## More servers
+
+The same setup (Streamable HTTP, OAuth or `Authorization: Bearer <Apify API token>`) works for these related servers. Each has a matching agent skill in `agensi/` (SKILL.md + README.md, zipped for upload).
+
+| Server | URL | What it answers |
+|---|---|---|
+| company-research | `https://mcp.apify.com/?tools=Kadi_Bence/tech-stack-detector,Kadi_Bence/website-screenshot` | What a company's website is built with (CMS, ecommerce, analytics, CDN, hosting...), screenshots and PDFs of pages |
+| public-tenders | `https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper` | EU public tenders and contract awards from TED by keyword, CPV, country and deadline |
+| job-market-data | `https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed` | Job vacancies by keyword and place: Germany (Arbeitsagentur), Sweden (Platsbanken), global tech jobs (Greenhouse, Lever, Ashby and more) |
+
+Claude Code: `claude mcp add --transport http <server> "<URL>"`, then `/mcp` > Authenticate. `server.json` describes only the Hiring Signals server (the MCP Registry format is one server per file).
+
 ## Repository layout
 
 - `plugin/`: the Claude plugin (submit this folder to the Claude plugin directory).
