@@ -32,7 +32,7 @@ Each saved job is a paid event on the user's Apify account (fractions of a cent 
 
 ## Read the results
 
-The tool returns the first items of the run's dataset. When the run saved more items than you received, call `get-dataset-items` with the returned `datasetId`, using `limit`, `offset` and `fields` (for example `title,location,workMode,postedDate,salaryMin,salaryMax,url`) to page through them. If a run is still going when the tool returns, call `get-actor-run` with `waitSecs` and then read the dataset.
+The tool returns a run summary (status, item count, available fields and a `datasetId`), not the jobs themselves. Then call `get-dataset-items` with that `datasetId`, using `limit`, `offset` and `fields` (for example `title,location,workMode,postedDate,salaryMin,salaryMax,url`) to page through them. If a run is still going when the tool returns, call `get-actor-run` with `waitSecs` and then read the dataset.
 
 Both tools return one item per job with the same core fields: `title`, `company`, `location`, `workMode` (`remote` / `hybrid` / `onsite`), `postedDate`, `salaryMin`, `salaryMax`, `salaryCurrency`, `url`.
 
