@@ -11,8 +11,8 @@ Example prompts:
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/company-research/`).
 2. Create a free Apify account: https://console.apify.com/sign-up
 3. Connect the MCP server:
-   - URL: `https://mcp.apify.com/?tools=Kadi_Bence/tech-stack-detector,Kadi_Bence/website-screenshot`
-   - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
+   - URL: `https://company-research--bence-kadi.run.tools` (hosted on Smithery: https://smithery.ai/servers/bence-kadi/company-research)
+   - Transport: Streamable HTTP; auth via OAuth (log in with Smithery, then connect your Apify account)
    - Claude Code: `claude mcp add --transport http company-research "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 

@@ -11,8 +11,8 @@ Example prompts:
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/public-tenders/`).
 2. Create a free Apify account: https://console.apify.com/sign-up
 3. Connect the MCP server:
-   - URL: `https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper`
-   - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
+   - URL: `https://public-tenders--bence-kadi.run.tools` (hosted on Smithery: https://smithery.ai/servers/bence-kadi/public-tenders)
+   - Transport: Streamable HTTP; auth via OAuth (log in with Smithery, then connect your Apify account)
    - Claude Code: `claude mcp add --transport http public-tenders "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 

@@ -11,8 +11,8 @@ Example prompts:
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/job-market-data/`).
 2. Create a free Apify account: https://console.apify.com/sign-up
 3. Connect the MCP server:
-   - URL: `https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed`
-   - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
+   - URL: `https://job-market-data--bence-kadi.run.tools` (hosted on Smithery: https://smithery.ai/servers/bence-kadi/job-market-data)
+   - Transport: Streamable HTTP; auth via OAuth (log in with Smithery, then connect your Apify account)
    - Claude Code: `claude mcp add --transport http job-market-data "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 
