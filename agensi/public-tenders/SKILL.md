@@ -9,11 +9,11 @@ The `public-tenders` MCP server gives you one tool. It reads the official TED AP
 
 ## If the tools are not available yet
 
-If you cannot see the `ted-tenders-scraper` tool, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes: a Smithery login plus a free Apify account):
+If you cannot see the `ted-tenders-scraper` tool, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes and needs a free Apify account, apify.com):
 
-- Server URL: `https://public-tenders--bence-kadi.run.tools` (hosted on Smithery: https://smithery.ai/servers/bence-kadi/public-tenders)
+- Server URL: `https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper`
 - Listed in the official MCP Registry as `io.github.kiskecske24/public-tenders` (also on Smithery/Glama), so registry-aware clients can install it by name.
-- Transport: Streamable HTTP. Auth: OAuth. The agent opens a Smithery login; Smithery then asks the user to connect their free Apify account (apify.com), where the scrapers run.
+- Transport: Streamable HTTP. Auth: OAuth (the agent opens an Apify login) or header `Authorization: Bearer <Apify API token>`.
 - Claude Code: `claude mcp add --transport http public-tenders "<server URL>"`, then `/mcp` > public-tenders > Authenticate.
 - Cursor / VS Code / other clients: add an HTTP MCP server named `public-tenders` with the URL above.
 

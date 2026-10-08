@@ -9,11 +9,11 @@ The `job-market-data` MCP server gives you three tools. Two read official public
 
 ## If the tools are not available yet
 
-If you cannot see the `arbeitsagentur-jobs-scraper` / `sweden-jobs-scraper` / `ats-jobs-feed` tools, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes: a Smithery login plus a free Apify account):
+If you cannot see the `arbeitsagentur-jobs-scraper` / `sweden-jobs-scraper` / `ats-jobs-feed` tools, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes and needs a free Apify account, apify.com):
 
-- Server URL: `https://job-market-data--bence-kadi.run.tools` (hosted on Smithery: https://smithery.ai/servers/bence-kadi/job-market-data)
+- Server URL: `https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed`
 - Listed in the official MCP Registry as `io.github.kiskecske24/job-market-data` (also on Smithery/Glama), so registry-aware clients can install it by name.
-- Transport: Streamable HTTP. Auth: OAuth. The agent opens a Smithery login; Smithery then asks the user to connect their free Apify account (apify.com), where the scrapers run.
+- Transport: Streamable HTTP. Auth: OAuth (the agent opens an Apify login) or header `Authorization: Bearer <Apify API token>`.
 - Claude Code: `claude mcp add --transport http job-market-data "<server URL>"`, then `/mcp` > job-market-data > Authenticate.
 - Cursor / VS Code / other clients: add an HTTP MCP server named `job-market-data` with the URL above.
 

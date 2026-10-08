@@ -11,8 +11,8 @@ Example prompts:
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/hiring-signals/`).
 2. Create a free Apify account: https://console.apify.com/sign-up
 3. Connect the MCP server:
-   - URL: `https://hiring-signals--bence-kadi.run.tools` (hosted on Smithery: https://smithery.ai/servers/bence-kadi/hiring-signals)
-   - Transport: Streamable HTTP; auth via OAuth (log in with Smithery, then connect your Apify account)
+   - URL: `https://mcp.apify.com/?tools=Kadi_Bence/workday-jobs-scraper,Kadi_Bence/ats-jobs-scraper`
+   - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
    - Claude Code: `claude mcp add --transport http hiring-signals "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
 
