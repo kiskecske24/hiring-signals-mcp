@@ -117,3 +117,92 @@ The skill connects to Apify's hosted MCP server and runs three published Apify A
 - Q: Which countries are covered? A: Germany and Sweden fully (all sectors, from the national public job boards) and tech and startup jobs worldwide from six applicant tracking systems. Other national job boards are not included yet.
 - Q: How is this different from Hiring Signals? A: Hiring Signals answers "what is this company hiring for?". Job Market Data answers "what jobs exist for this role or skill in this place?" across many employers. They work well together.
 - Q: What does it cost? A: The skill is free. Each job returned costs a fraction of a cent on your Apify account (default 20 per search), and Apify's free plan includes monthly credit.
+
+---
+
+## v1.3 updates (2026-10-14, pending review)
+
+- hiring-signals: + ats-plus-jobs-scraper (Oracle, Taleo, BambooHR, Rippling, Teamtailor, Breezy, JazzHR, Jobvite, Gem).
+- company-research: + domain-whois-lookup, + seo-site-audit.
+- public-tenders: + sam-gov-scraper (US federal). Listing name still says "EU ... (TED)"; rename on the Agensi edit page if wanted.
+- job-market-data: + remote-jobs-scraper.
+
+Not yet in any skill (not public on the Store yet): gov-tenders-scraper, sec-form-d-funding, us-new-business-filings, bulk-image-downloader, eures-jobs-scraper, pagespeed-checker.
+
+---
+
+## 5. ai-visibility
+
+**Listing name:** AI Visibility: Is Your Brand in ChatGPT Answers?
+
+**Tagline:** Check if ChatGPT, Perplexity, Gemini and Claude mention and cite your brand.
+
+**Long description:**
+AI Visibility lets your agent check how AI assistants answer your customers' questions. It sends your buying-intent prompts ("best CRM for small agencies", "top accounting software for freelancers") to ChatGPT, Perplexity, Gemini and Claude through their official APIs, with web search on, and analyses every answer: is your brand mentioned, in which position, which competitors are named instead, and which websites are cited as sources.
+
+The agent turns the results into a visibility score per assistant, a per-prompt table, competitor share of voice and the list of domains the AI relies on most, the pages to get listed on. With monitoring on, it shows what changed since the last run.
+
+Typical uses: marketing and SEO teams starting with GEO / AEO (generative engine optimisation), agencies reporting AI visibility to clients, founders checking whether ChatGPT recommends them or a competitor, and content teams finding which sources AI assistants trust.
+
+The skill connects to Apify's hosted MCP server and runs a published Apify Actor on your own free Apify account. ChatGPT works without any API key (AI cost included, a few cents per check); with your own OpenAI, Perplexity, Gemini or Anthropic key a check costs about one cent plus the provider's tokens.
+
+**Category:** Sales & Marketing
+
+**Tags:** ai visibility, geo, aeo, chatgpt seo, llm brand monitoring, share of voice, perplexity, mcp
+
+**FAQ**
+- Q: Do I need API keys? A: No, ChatGPT works out of the box. Perplexity, Gemini and Claude need your own key, set in the Actor input on Apify; never paste keys into the chat.
+- Q: Why do results change between runs? A: AI answers vary from call to call. Use 2-3 runs per prompt or monitoring for decisions.
+- Q: What does it cost? A: The skill is free. A 10-prompt ChatGPT check costs well under one dollar on your Apify account; Apify's free plan includes monthly credit.
+
+---
+
+## 6. app-store-research
+
+**Listing name:** App Store Research: Charts, Apps & Reviews
+
+**Tagline:** Top charts, app details, developer portfolios and reviews from the Apple App Store.
+
+**Long description:**
+App Store Research gives your agent live Apple App Store data in 169 countries: top free and paid charts overall or by category (iPhone or iPad), full app details (rating, rating count and histogram, price, version, release notes, size, genre, languages), every app of a developer, and recent user reviews.
+
+Ask "what are the top 20 free Finance apps in the US and UK?", "compare Headspace, Calm and Balance", or "what do users complain about in our latest reviews?". The agent builds a small run, then answers with a ranked chart, a comparison table or the most common complaints and praises with short quotes.
+
+Typical uses: app marketers and ASO specialists tracking ranks, product managers watching competitors' updates and reviews, investors and analysts sizing app categories, and indie developers researching a niche before building.
+
+The skill connects to Apify's hosted MCP server and runs a published Apify Actor on your own free Apify account, billed per app row and per review at fractions of a cent (a top-20 chart costs about two cents).
+
+**Category:** Research & Data (alt: Sales & Marketing)
+
+**Tags:** app store, ios apps, aso, app rankings, top charts, app reviews, competitor research, mcp
+
+**FAQ**
+- Q: Does it cover Google Play? A: No, Apple App Store only (iPhone and iPad).
+- Q: Can it show downloads or revenue? A: No. Apple does not publish them; the skill reports ranks, ratings and reviews instead.
+- Q: What does it cost? A: The skill is free. Each app row and review costs a fraction of a cent on your Apify account; Apify's free plan includes monthly credit.
+
+---
+
+## 7. document-to-markdown
+
+**Listing name:** Document to Markdown: PDF, Office & OCR for Agents
+
+**Tagline:** Turn PDF, Word, PowerPoint, Excel and scanned files at any URL into clean Markdown.
+
+**Long description:**
+Document to Markdown lets your agent read documents it cannot open by itself. Give it links to PDFs, Word files, slide decks, spreadsheets, EPUB or scanned pages, and it gets back clean Markdown: headings, lists and tables kept, page markers for citations, running headers and footers removed, and optional chunks with heading paths for a knowledge base. Scanned pages are read with Tesseract OCR in many languages.
+
+Ask the agent to summarise an 80-page annual report with page citations, compare pricing tables across a dozen decks, translate a clause from a scanned contract, or convert a folder of documents for RAG. It converts only the pages you need (page ranges), then works with the content instead of dumping it.
+
+Typical uses: analysts and consultants reading long reports, legal and procurement teams reviewing contracts and tender documents, developers building RAG pipelines, and anyone who needs a PDF or Office file in an LLM-friendly format.
+
+The skill connects to Apify's hosted MCP server and runs a published Apify Actor on your own free Apify account, billed per document (per started 20 pages) and per OCR page, fractions of a cent each.
+
+**Category:** Productivity (alt: Research & Data)
+
+**Tags:** pdf to markdown, document conversion, ocr, docx, pptx, xlsx, rag, mcp
+
+**FAQ**
+- Q: Which formats work? A: PDF (text and scanned), DOCX, PPTX, XLSX/XLS, CSV, HTML, EPUB, ODT/ODS/ODP, RTF and images.
+- Q: Can it read local files? A: It reads public URLs or files uploaded to your own Apify key-value store. Local files your agent can already read do not need it.
+- Q: What does it cost? A: The skill is free. A normal report costs well under one cent on your Apify account; Apify's free plan includes monthly credit.

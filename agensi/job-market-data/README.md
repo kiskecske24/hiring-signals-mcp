@@ -1,17 +1,18 @@
 # Job Market Data skill
 
-Ask your AI agent about the job market for a role, skill or city. Searches Germany's federal job board (Bundesagentur für Arbeit), Sweden's Platsbanken and a daily-updated database of tech and startup jobs from Greenhouse, Lever, Ashby, Workable, Recruitee and Personio career pages worldwide.
+Ask your AI agent about the job market for a role, skill or city. Searches Germany's federal job board (Bundesagentur für Arbeit), Sweden's Platsbanken and a daily-updated database of tech and startup jobs from Greenhouse, Lever, Ashby, Workable, Recruitee and Personio career pages worldwide, plus remote jobs from We Work Remotely, Remote OK, Himalayas, Jobicy and Arbeitnow.
 
 Example prompts:
 - "How many data engineer jobs were posted in Berlin in the last 14 days, and who is hiring?"
 - "Find remote product manager jobs in Europe posted this week, with salary ranges."
+- "Find remote customer support jobs open to people in Europe, paying at least 40,000 a year."
 - "Which employers in Stockholm are hiring nurses right now?"
 
 ## Setup (about 3 minutes)
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/job-market-data/`).
 2. Create a free Apify account: https://console.apify.com/sign-up
 3. Connect the MCP server:
-   - URL: `https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed`
+   - URL: `https://mcp.apify.com/?tools=Kadi_Bence/arbeitsagentur-jobs-scraper,Kadi_Bence/sweden-jobs-scraper,Kadi_Bence/ats-jobs-feed,Kadi_Bence/remote-jobs-scraper`
    - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
    - Claude Code: `claude mcp add --transport http job-market-data "<URL>"`, then `/mcp` > Authenticate.
 4. Ask a question.
