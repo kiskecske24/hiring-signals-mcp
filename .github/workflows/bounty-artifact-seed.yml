@@ -1,0 +1,50 @@
+# Owner-authorized B01 research (kiskecske24/hiring-signals-mcp). Disposable probe only.
+name: Bounty artifact seed
+on:
+  workflow_dispatch:
+    inputs:
+      probe_tag:
+        description: Optional tag for this seed run
+        required: false
+        default: default
+
+permissions:
+  contents: read
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write secret marker bundle
+        run: |
+          set -euo pipefail
+          TAG="${{ inputs.probe_tag }}"
+          MARKER="BOUNTY_MARKER_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}_${TAG}"
+          mkdir -p bounty-out
+          {
+            echo "marker=${MARKER}"
+            echo "repo=${GITHUB_REPOSITORY}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "workflow=${GITHUB_WORKFLOW}"
+            echo "sha=${GITHUB_SHA}"
+          } > bounty-out/secret-marker.txt
+          echo "Wrote marker (not printing value)"
+
+      - name: Upload private artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bounty-secret-bundle-${{ inputs.probe_tag }}
+          path: bounty-out/secret-marker.txt
+          retention-days: 2
+
+      - name: Write Actions cache entry (scope probe)
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/bounty-cache
+          echo "cache_owner_run=${GITHUB_RUN_ID}" > /tmp/bounty-cache/secret.txt
+          echo "cache_tag=${{ inputs.probe_tag }}" >> /tmp/bounty-cache/secret.txt
+
+      - uses: actions/cache/save@v4
+        with:
+          path: /tmp/bounty-cache
+          key: bounty-idor-cache-${{ github.run_id }}-${{ inputs.probe_tag }}
