@@ -1,0 +1,35 @@
+# Owner-authorized B01 research workflow (kiskecske24). Disposable probe only.
+name: Bounty token probe
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: GITHUB_TOKEN cross-repo and surface probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          probe() {
+            local label="$1"
+            local url="$2"
+            echo "=== ${label} ==="
+            code=$(curl -sS -o /tmp/body.json -w "%{http_code}" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "${url}")
+            echo "HTTP ${code}"
+            head -c 400 /tmp/body.json || true
+            echo
+          }
+          probe "this_repo" "https://api.github.com/repos/${GITHUB_REPOSITORY}"
+          probe "calculator" "https://api.github.com/repos/kiskecske24/Calculator"
+          probe "eulertasks" "https://api.github.com/repos/kiskecske24/Eulertasks"
+          probe "actions_secrets" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/secrets"
+          probe "user_packages" "https://api.github.com/user/packages?package_type=npm"
