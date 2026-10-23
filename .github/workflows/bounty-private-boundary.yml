@@ -1,0 +1,26 @@
+name: Bounty private boundary probe
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GITHUB_TOKEN vs private sandbox repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for path in repos/kiskecske24/bounty-private-sandbox repos/kiskecske24/bounty-private-sandbox/contents/README.md; do
+            url="https://api.github.com/${path}"
+            code=$(curl -sS -o /tmp/body.json -w "%{http_code}" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "${url}")
+            echo "CROSS_PROBE ${path} HTTP ${code}"
+            head -c 200 /tmp/body.json || true
+            echo
+          done
