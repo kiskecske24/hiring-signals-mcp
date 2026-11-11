@@ -9,7 +9,7 @@ Example prompts:
 
 ## Setup (about 3 minutes)
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/ai-visibility/`).
-2. Create a free Apify account: https://console.apify.com/sign-up
+2. Create a free Apify account (sign up on apify.com).
 3. Connect the MCP server:
    - URL: `https://mcp.apify.com/?tools=Kadi_Bence/ai-visibility-tracker`
    - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
@@ -23,4 +23,4 @@ The tool runs on your Apify account and bills per check (one prompt answered by 
 Only your prompts and brand names are sent to the AI providers. Your own API keys are stored encrypted in your Apify account and never logged. No personal data is collected.
 
 ## Custom versions
-Need a weekly AI visibility report for several clients, more assistants or a Google Sheet export? Email bence.kadi@gmail.com or see https://apify.com/kadi_bence
+Need a weekly AI visibility report for several clients, more assistants or a Google Sheet export? Email bence.kadi@gmail.com or see the Kadi_Bence page on the Apify Store

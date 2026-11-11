@@ -9,7 +9,7 @@ Example prompts:
 
 ## Setup (about 3 minutes)
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/app-store-research/`).
-2. Create a free Apify account: https://console.apify.com/sign-up
+2. Create a free Apify account (sign up on apify.com).
 3. Connect the MCP server:
    - URL: `https://mcp.apify.com/?tools=Kadi_Bence/app-store-scraper`
    - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
@@ -26,4 +26,4 @@ Apple App Store, iPhone and iPad, 169 countries. Not included: Google Play, down
 Only public App Store data. Reviewer identities are not used for profiling.
 
 ## Custom versions
-Need a daily chart or review feed, Google Play, or a Google Sheet export? Email bence.kadi@gmail.com or see https://apify.com/kadi_bence
+Need a daily chart or review feed, Google Play, or a Google Sheet export? Email bence.kadi@gmail.com or see the Kadi_Bence page on the Apify Store

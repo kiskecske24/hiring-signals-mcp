@@ -62,3 +62,9 @@ Summarise for the user, do not dump raw rows:
 - Don't invent or guess AI answers. Only report what the checks returned.
 - Don't ask for or repeat API keys in the chat.
 - Don't run the same prompts again in one conversation; reuse the dataset with `get-dataset-items`.
+
+## Network access and requirements
+
+- Permission: network only. This skill makes no network calls of its own: the agent talks to Apify's hosted MCP server (`mcp.apify.com`, Streamable HTTP), which runs the `ai-visibility-tracker` Actor, which sends the user's prompts to the AI assistants being checked (for example OpenAI's API) and records whether the brand is mentioned on the user's own Apify account (`api.apify.com`).
+- Requirement: a free Apify account, connected once through the MCP server's OAuth login or an Apify API token the user enters in their own agent settings. No key is stored in this skill.
+- No local files are read or written and no shell commands are run.

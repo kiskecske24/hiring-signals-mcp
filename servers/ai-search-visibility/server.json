@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kiskecske24/ai-search-visibility",
+  "title": "AI Search Visibility",
+  "description": "Does ChatGPT, Perplexity or Gemini mention your brand? Plus AI search readiness audits.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp",
+  "repository": {
+    "url": "https://github.com/kiskecske24/hiring-signals-mcp",
+    "source": "github",
+    "subfolder": "servers/ai-search-visibility"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/ai-visibility-tracker,Kadi_Bence/ai-readiness-audit",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: 'Bearer <Apify API token>'. Leave empty to sign in to Apify with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kiskecske24/hiring-signals",
   "title": "Hiring Signals",
-  "description": "Live job openings from Workday, Greenhouse, Lever, Ashby, Workable and Personio career sites.",
-  "version": "1.0.0",
+  "description": "Live job openings from Workday, Greenhouse, Lever, Ashby, Taleo and BambooHR career sites.",
+  "version": "1.1.0",
   "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp",
   "repository": {
     "url": "https://github.com/kiskecske24/hiring-signals-mcp",
@@ -12,7 +12,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mcp.apify.com/?tools=Kadi_Bence/workday-jobs-scraper,Kadi_Bence/ats-jobs-scraper",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/workday-jobs-scraper,Kadi_Bence/ats-jobs-scraper,Kadi_Bence/ats-plus-jobs-scraper,Kadi_Bence/ats-jobs-feed,Kadi_Bence/company-intelligence",
       "headers": [
         {
           "name": "Authorization",

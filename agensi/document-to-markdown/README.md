@@ -9,7 +9,7 @@ Example prompts:
 
 ## Setup (about 3 minutes)
 1. Put this folder in your agent's skills directory (Claude Code: `~/.claude/skills/document-to-markdown/`).
-2. Create a free Apify account: https://console.apify.com/sign-up
+2. Create a free Apify account (sign up on apify.com).
 3. Connect the MCP server:
    - URL: `https://mcp.apify.com/?tools=Kadi_Bence/document-to-markdown`
    - Transport: Streamable HTTP; auth via OAuth or `Authorization: Bearer <Apify API token>`
@@ -26,4 +26,4 @@ The tool runs on your Apify account and bills per document (per started 20 pages
 Files are downloaded and converted inside your own Apify account; nothing is shared with third parties. Passwords for encrypted PDFs are stored as secrets.
 
 ## Custom versions
-Need a bulk conversion pipeline, a different output format or a Google Drive integration? Email bence.kadi@gmail.com or see https://apify.com/kadi_bence
+Need a bulk conversion pipeline, a different output format or a Google Drive integration? Email bence.kadi@gmail.com or see the Kadi_Bence page on the Apify Store

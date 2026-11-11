@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kiskecske24/public-tenders",
-  "title": "Public Tenders (EU TED)",
-  "description": "Search open EU public tenders and contract awards on TED by keyword, CPV, country and deadline.",
-  "version": "1.0.0",
+  "title": "Public Tenders (EU, US, UK, AU)",
+  "description": "Open public tenders and awards: EU TED, US SAM.gov, UK Find a Tender, AusTender.",
+  "version": "1.1.0",
   "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp/tree/master/agensi/public-tenders",
   "repository": {
     "url": "https://github.com/kiskecske24/hiring-signals-mcp",
@@ -13,7 +13,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/ted-tenders-scraper,Kadi_Bence/sam-gov-scraper,Kadi_Bence/gov-tenders-scraper",
       "headers": [
         {
           "name": "Authorization",

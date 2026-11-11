@@ -28,7 +28,7 @@ Tool names can carry a client prefix (for example `mcp__document-to-markdown__ka
 
 ## Build the input
 
-- `urls`: direct links to the files (`https://arxiv.org/pdf/2401.18059`). A link to a viewer page (Google Drive preview, Dropbox page) is not a file; ask for the direct download link.
+- `urls`: direct links to the files (`https://example.com/report.pdf`). A link to a viewer page (Google Drive preview, Dropbox page) is not a file; ask for the direct download link.
 - `outputFormat`: `markdown` (default, best for reading and LLMs), `text`, or `both`.
 - `pageRange` (`"1-5, 8, 20-"`) or `maxPagesPerDocument` to convert only what the user needs from a long file.
 - `includePageMarkers` (default on) adds `<!-- Page 3 -->` before each page; keep it on when the user wants page citations.
@@ -59,3 +59,9 @@ One item per document: `url`, `fileName`, `format`, `title`, `pages`, `pagesConv
 
 - Don't convert documents the user is not allowed to access or share; the tool only downloads public URLs or files the user uploaded to their own Apify storage.
 - Don't run the same document again in one conversation; reuse the dataset with `get-dataset-items`.
+
+## Network access and requirements
+
+- Permission: network only. This skill makes no network calls of its own: the agent talks to Apify's hosted MCP server (`mcp.apify.com`, Streamable HTTP), which runs the `document-to-markdown` Actor, which downloads only the document URLs the user provides and converts them on the user's own Apify account (`api.apify.com`).
+- Requirement: a free Apify account, connected once through the MCP server's OAuth login or an Apify API token the user enters in their own agent settings. No key is stored in this skill.
+- No local files are read or written and no shell commands are run.

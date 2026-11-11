@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kiskecske24/startup-funding-leads",
+  "title": "Startup Funding & New Business Leads",
+  "description": "US startup funding rounds (SEC Form D), new US company filings, company enrichment.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/kiskecske24/hiring-signals-mcp",
+  "repository": {
+    "url": "https://github.com/kiskecske24/hiring-signals-mcp",
+    "source": "github",
+    "subfolder": "servers/startup-funding-leads"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=Kadi_Bence/sec-form-d-funding,Kadi_Bence/us-new-business-filings,Kadi_Bence/company-intelligence",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: 'Bearer <Apify API token>'. Leave empty to sign in to Apify with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

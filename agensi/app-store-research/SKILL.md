@@ -30,7 +30,7 @@ This skill covers Apple's App Store only, not Google Play. Download numbers and 
 
 Use one or more of these sources in a run:
 
-- Specific apps: `appIds` with App Store URLs (`https://apps.apple.com/us/app/notes/id1110145109`), numeric IDs (`1110145109`) or bundle IDs (`com.spotify.client`). If the user gives only an app name, look up its App Store URL first or run the overall chart for its category.
+- Specific apps: `appIds` with App Store URLs (`https://apps.apple.com/<country>/app/<name>/id<number>`), numeric IDs (`1110145109`) or bundle IDs (`com.spotify.client`). If the user gives only an app name, look up its App Store URL first or run the overall chart for its category.
 - A developer's apps: `developerIds` with developer page URLs or IDs.
 - Charts: `charts` (`top-free`, `top-paid`), `chartCategories` (for example `Games`, `Finance`, `Health & Fitness`; empty = all apps), `platform` (`iphone` or `ipad`), `maxChartPositions` (how deep: top 10, top 50...).
 - `countries`: 2-letter codes (`["us"]` default, `["gb", "de"]`). Every app, developer and chart is read in each country, so each extra country multiplies the rows.
@@ -67,3 +67,9 @@ Summarise for the user, do not dump raw rows:
 - Don't use this tool to identify or profile individual reviewers. Report review content, not reviewer identities.
 - Don't present review samples as complete: Apple's public page shows at most 20 reviews per app and country.
 - Don't run the same apps again in one conversation; reuse the dataset with `get-dataset-items`.
+
+## Network access and requirements
+
+- Permission: network only. This skill makes no network calls of its own: the agent talks to Apify's hosted MCP server (`mcp.apify.com`, Streamable HTTP), which runs the `app-store-scraper` Actor, which reads Apple's public App Store pages, charts and review feeds on the user's own Apify account (`api.apify.com`).
+- Requirement: a free Apify account, connected once through the MCP server's OAuth login or an Apify API token the user enters in their own agent settings. No key is stored in this skill.
+- No local files are read or written and no shell commands are run.

@@ -1,18 +1,18 @@
 ---
 name: company-research
-description: Research a company's website and domain - detect its tech stack (CMS, ecommerce platform, analytics and marketing tags, JavaScript framework, CDN, hosting, web server, payment providers, live chat), capture screenshots or PDFs of its pages, look up domain WHOIS / RDAP data (age, registrar, expiry, DNS, e-mail provider, SPF / DMARC) and run an SEO audit (0-100 score per page, broken links, fix hints). Use when the user asks what a company's or competitor's website is built with, whether a site uses Shopify / WordPress / HubSpot / a given tool, wants to qualify a list of prospect websites by technology, compare the stacks of several companies, needs a screenshot (desktop or mobile, full page or above the fold) or PDF of a web page, asks how old a domain is, when it expires, who the registrar is or which e-mail provider a company uses, or wants an SEO check, broken-link scan or technical audit of a site.
+description: Research a company's website and domain - detect its tech stack (CMS, ecommerce platform, analytics and marketing tags, JavaScript framework, CDN, hosting, web server, payment providers, live chat), capture screenshots or PDFs of its pages, look up domain WHOIS / RDAP data (age, registrar, expiry, DNS, e-mail provider, SPF / DMARC), run an SEO audit (0-100 score per page, broken links, fix hints), list every URL in a site's XML sitemaps and score a site 0-100 for AI search readiness (AI crawler access, llms.txt, structured data). Use when the user asks what a company's or competitor's website is built with, whether a site uses Shopify / WordPress / HubSpot / a given tool, wants to qualify a list of prospect websites by technology, compare the stacks of several companies, needs a screenshot (desktop or mobile, full page or above the fold) or PDF of a web page, asks how old a domain is, when it expires, who the registrar is or which e-mail provider a company uses, wants an SEO check, broken-link scan or technical audit of a site, wants all URLs or new pages from a sitemap, or asks whether ChatGPT, Perplexity or other AI crawlers can read a site.
 ---
 
-# Company research: tech stack, screenshots, domain WHOIS and SEO audit
+# Company research: tech stack, screenshots, domain WHOIS, SEO audit, sitemaps and AI readiness
 
-The `company-research` MCP server gives you four tools. All work on any public website or domain the user names: one reads the live HTML to detect technologies, one renders pages in a real browser and saves an image or PDF, one looks up the domain in the official registries (RDAP / WHOIS) and DNS, and one crawls the site for an SEO audit.
+The `company-research` MCP server gives you six tools. All work on any public website or domain the user names: one reads the live HTML to detect technologies, one renders pages in a real browser and saves an image or PDF, one looks up the domain in the official registries (RDAP / WHOIS) and DNS, one crawls the site for an SEO audit, one lists the URLs in its XML sitemaps, and one scores how readable the site is for AI search.
 
 ## If the tools are not available yet
 
-If you cannot see the `tech-stack-detector` / `website-screenshot` / `domain-whois-lookup` / `seo-site-audit` tools, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes and needs a free Apify account, apify.com):
+If you cannot see the `tech-stack-detector` / `website-screenshot` / `domain-whois-lookup` / `seo-site-audit` / `sitemap-extractor` / `ai-readiness-audit` tools, the MCP server is not connected. Tell the user, briefly, how to connect it in their agent (it takes about 3 minutes and needs a free Apify account, apify.com):
 
-- Server URL: `https://mcp.apify.com/?tools=Kadi_Bence/tech-stack-detector,Kadi_Bence/website-screenshot,Kadi_Bence/domain-whois-lookup,Kadi_Bence/seo-site-audit`
-- Also listed in the official MCP Registry as `io.github.kiskecske24/company-research` (also on Smithery/Glama). If an installed server shows only two of the four tools, re-add it with the URL above.
+- Server URL: `https://mcp.apify.com/?tools=Kadi_Bence/tech-stack-detector,Kadi_Bence/website-screenshot,Kadi_Bence/domain-whois-lookup,Kadi_Bence/seo-site-audit,Kadi_Bence/sitemap-extractor,Kadi_Bence/ai-readiness-audit`
+- Also listed in the official MCP Registry as `io.github.kiskecske24/company-research` (also on Smithery/Glama). If an installed server shows fewer than six tools, re-add it with the URL above.
 - Transport: Streamable HTTP. Auth: OAuth (the agent opens an Apify login) or header `Authorization: Bearer <Apify API token>`.
 - Claude Code: `claude mcp add --transport http company-research "<server URL>"`, then `/mcp` > company-research > Authenticate.
 - Cursor / VS Code / other clients: add an HTTP MCP server named `company-research` with the URL above.
@@ -27,6 +27,8 @@ Tool names can carry a client prefix (for example `mcp__company-research__kadi_b
 | `kadi_bence--website-screenshot` | Screenshot (PNG, JPEG, WebP) or PDF of a page, desktop / laptop / tablet / mobile | `urls` (list, required); one charge per screenshot |
 | `kadi_bence--domain-whois-lookup` | Official RDAP / WHOIS for 1,100+ TLDs: registered or not, registrar, created / updated / expiry dates, domain age, nameservers, status, DNSSEC; plus DNS (A, MX, NS, TXT), SPF, DMARC and e-mail provider | `domains` (list of domains, URLs or e-mail addresses); one charge per domain. `includeDns` (default on) |
 | `kadi_bence--seo-site-audit` | Crawls a site and scores every page 0-100: title, meta description, H1, canonical, indexability, redirects, broken links, missing alt texts, structured data, response time, with fix hints | `startUrls` (required); one charge per page audited. `maxPages` (default 20) |
+| `kadi_bence--sitemap-extractor` | Every URL in a site's XML sitemaps, with last-modified date, change frequency, priority and hreflang; nested indexes and .gz files | `startUrls` (required); one charge per URL. `maxUrlsPerSite` (default 20) |
+| `kadi_bence--ai-readiness-audit` | 0-100 AI search readiness score, grade and fix list: access map for 20 AI crawlers, llms.txt check and draft, JSON-LD, content in raw HTML | `urls` (required); one charge per site |
 
 ## Pick the tool
 
@@ -34,18 +36,22 @@ Tool names can carry a client prefix (for example `mcp__company-research__kadi_b
 2. "Show me / capture / screenshot / PDF of a page" means `website-screenshot`. Pass full page URLs when the user means a specific page (`https://stripe.com/pricing`).
 3. "How old is this domain / when does it expire / who is the registrar / which e-mail provider / is SPF or DMARC set up / is this domain registered" means `domain-whois-lookup`. Pass bare domains; URLs and e-mail addresses are reduced to the domain automatically.
 4. "SEO audit / broken links / why is this page not indexed / check titles and meta descriptions" means `seo-site-audit`. Pass the homepage (or a section start URL) as `startUrls: [{"url": "https://example.com/"}]`.
-5. For a "quick look at a company's website" run the tech stack on the homepage and the WHOIS lookup on the domain (both cheap); add a screenshot or SEO audit only if the user wants them.
+5. "All URLs of a site / what is in the sitemap / which pages changed recently" means `sitemap-extractor`. Pass the homepage or sitemap URL as `startUrls: [{"url": "https://example.com/"}]`.
+6. "Can ChatGPT or Perplexity read this site / is GPTBot blocked / check llms.txt / GEO score" means `ai-readiness-audit`. Pass `urls: ["example.com"]`. It measures technical readiness, not how often an AI mentions the brand.
+7. For a "quick look at a company's website" run the tech stack on the homepage and the WHOIS lookup on the domain (both cheap); add a screenshot or SEO audit only if the user wants them.
 
 This skill does not cover funding rounds, company registries or people. Say so instead of guessing.
 
 ## Keep runs small and cheap
 
-Each website analysed, screenshot, domain looked up and page audited is a paid event on the user's Apify account (fractions of a cent each; see the Actor's Store page for the current price). The tech stack and screenshot tools have no result limit: the cost is the number of URLs you pass.
+Each website analysed, screenshot, domain looked up, page audited, sitemap URL and site scored is a paid event on the user's Apify account (fractions of a cent each; see the Actor's Store page for the current price). The tech stack and screenshot tools have no result limit: the cost is the number of URLs you pass.
 
 - Tech stack: keep `maxPagesPerSite` at 1 (homepage). Use 2-3 only when the user asks about tools that live on inner pages (checkout, pricing, blog); the price per website stays the same. Use `onlyCategories` (for example `["CMS", "Ecommerce", "Analytics"]`) to answer a narrow question; sites with nothing in those categories are not charged.
 - Screenshots: default to `"format": "jpeg"` and `"fullPage": false` (above the fold) unless the user wants the whole page; use `"device": "mobile"` for a mobile view, `"format": "pdf"` for a printable copy.
 - WHOIS: `maxResults` caps a long list (use 10-20 to test first). Leave `includeDns` on; it is included in the price.
 - SEO audit: keep `maxPages` at 20 for a first look; raise it (100-500) only when the user wants the whole site, and use `includeUrlGlobs` (for example `["/blog/*"]`) to audit one section. `maxDepth: 0` audits only the start URL(s). You pay only for pages audited successfully; link checks are free.
+- Sitemaps: keep `maxUrlsPerSite` at 20 unless the user wants the full list, and use `includeGlobs` (for example `["/blog/*"]`) or `modifiedWithinDays` to narrow it. A site with no sitemap ends empty and free.
+- AI readiness: the cost is the number of sites you pass. Sites that cannot be read are listed with the reason and not charged.
 - Before a run with more than about 50 URLs, domains or pages, say how many URLs it will process and ask the user to confirm.
 - Failed sites (blocked, timed out, no technology found) are listed with an `error` and not charged.
 
@@ -56,6 +62,8 @@ The tool returns a run summary: `status`, item count, the `datasetId` and the li
 - Tech stack (one item per website): `url`, `finalUrl`, `title`, `technologyCount`, `technologyNames`, and one list per category: `cms`, `ecommerce`, `analytics`, `tagManagers`, `marketingAutomation`, `advertising`, `framework`, `cdn`, `hosting`, `server`, `paymentProcessors`, `liveChat`, `programmingLanguages`. `technologies` holds `name`, `version`, `confidence` and `categories` per technology. Useful `fields`: `url,title,cms,ecommerce,analytics,framework,cdn,hosting,marketingAutomation,paymentProcessors,technologyCount`.
 - WHOIS (one item per domain): `domain`, `registered`, `availability`, `registrar`, `createdDate`, `updatedDate`, `expiresDate`, `domainAgeDays`, `daysUntilExpiry`, `status`, `nameservers`, `dnssec`, `registrantOrganization`, `registrantCountry` (only when the registry publishes them), `mxRecords`, `hasSpf`, `hasDmarc`, `dmarcPolicy`, `emailProvider`, `error`. Useful `fields`: `domain,registered,registrar,createdDate,expiresDate,domainAgeDays,daysUntilExpiry,nameservers,emailProvider,hasSpf,hasDmarc,dmarcPolicy,error`.
 - SEO audit (one item per page): `url`, `status`, `seoScore` (0-100), `issues`, `fixes`, `issueCount`, `errorCount`, `warningCount`, `indexable`, `title`, `titleLength`, `metaDescription`, `metaDescriptionLength`, `h1`, `h1Count`, `canonical`, `metaRobots`, `redirectChain`, `brokenLinks`, `brokenLinkCount`, `imagesMissingAlt`, `structuredDataTypes`, `wordCount`, `responseTimeMs`, `depth`. Useful `fields`: `url,status,seoScore,issueCount,issues,fixes,brokenLinkCount,indexable,title`.
+- Sitemap (one item per URL): `url`, `lastmod`, `changefreq`, `priority`, `imageCount`, `alternates`, `site`, `sitemapUrl`. Useful `fields`: `url,lastmod`.
+- AI readiness (one item per site): `url`, `aiReadinessScore`, `grade`, `scoreBreakdown`, `blockedAnswerCrawlers`, `issues`, `aiCrawlers`, `llmsTxt`, `llmsTxtDraft`, `wordCount`, `jsonLdTypes`. Useful `fields`: `url,aiReadinessScore,grade,blockedAnswerCrawlers,issues`.
 - Screenshot (one item per URL): `url`, `title`, `screenshotUrl` (a public link to the image or PDF), `format`, `device`, `width`, `height`, `bytes`, `truncated`, `error`. Useful `fields`: `url,title,screenshotUrl,width,height,error`.
 
 ## Answer the question
@@ -66,6 +74,8 @@ Summarise for the user, do not dump raw rows:
 - Mention when a detection has low `confidence` or when a site failed (`error`), and that tools loaded only after login or consent are not visible.
 - WHOIS: answer the question directly ("registered in 2011, 14 years old, renews in March 2027 via MarkMonitor"); for several domains, a compact table. Say when a registry hides a date or the registrant, and flag domains that expire within 30 days or have no SPF / DMARC.
 - SEO audit: give the average and lowest `seoScore`, the most common issues across pages ranked by how many pages they affect, every broken link with the page it was found on, and the 3-5 most valuable fixes from `fixes`. Do not list every page unless asked.
+- Sitemap: give the URL count, the main sections and the most recently changed pages; attach the full list only if asked.
+- AI readiness: give the score and grade, name any answer crawler that is blocked, and list the top 3 fixes. Crawlers used only for training are reported but do not cost points.
 - Screenshots: give the `screenshotUrl` link(s) (or show the image if the client can render it) and note if the page was `truncated`.
 
 ## Don't
